@@ -4,4 +4,4 @@ default :
 	@echo MAKING... example programs
 	(cd examples; make)
 	(cd examples; make PROG=robot_anim)
-	(cd doc; make)
+#	(cd doc; make)

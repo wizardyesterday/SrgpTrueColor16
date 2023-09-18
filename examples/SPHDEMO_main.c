@@ -195,7 +195,11 @@ InitSPHIGS (int argc, char **argv)
 	 READ_FROM_STDIN = TRUE;
    
    /* STARTUP SPHIGS */
+#if 0
    numplanes = 0; numshades = 10;
+#endif
+   /* Stay with 8 planes. */
+   numplanes = 8; numshades = 10;
    if (READ_FROM_STDIN)
    {
       printf ("\nPlease enter number of framebuffer planes to allocate:\n");

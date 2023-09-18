@@ -1,6 +1,7 @@
 #include "sphigslocal.h"
 #include "SPHDEMO.h"
 #include "SPHDEMO_view.h"
+#include <math.h>
 
 
    /* WARNING: must be reset to zero whenever camera restored to default */
@@ -255,8 +256,8 @@ ChangeVPN (double pitch, double yaw)
 
    totalyaw   = (totalyaw += yaw) % 360;
    totalpitch = (totalpitch += pitch) % 360;
-   MAT3rotate (temp1, y_axis, totalyaw*PI/180);
-   MAT3rotate (temp2, x_axis, totalpitch*PI/180);
+   MAT3rotate (temp1, y_axis, totalyaw*M_PI/180);
+   MAT3rotate (temp2, x_axis, totalpitch*M_PI/180);
    MAT3mult (xform, temp1, temp2);   
 	     
 
