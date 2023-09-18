@@ -1,0 +1,14 @@
+This is a port of SRGP so that runs on X when in 16-bit display mode.  I
+reworked srgp_color_X.c and srgp_echo_X.c to index into my global
+colorPallette[] array so that proper color color setting could be achieved.
+I could have gutted the whole system, but I really wanted to keep things in
+the spirit of SRGP such that pseudocolor is used in a truecolor environment.
+It's not perfect, but it works.  I was more interested in seeing the
+wonderful SRGP algorithms in action.
+
+Note that I have forced things to work with a 16-bit display.  This may break
+the MAC-centric code.  I think it should be okay since conditional compiles
+are performed.
+
+Chris G. 10/18/2023
+
