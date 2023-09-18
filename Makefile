@@ -1,4 +1,6 @@
 default :
+	@echo MAKING... SRGP optimized library 
+	(cd src/srgp;  make clean CFLAGS=-O; make)
 	@echo MAKING... SPHIGS optimized library 
 	(cd src/sphigs;  make clean CFLAGS=-O; make)
 	@echo MAKING... example programs

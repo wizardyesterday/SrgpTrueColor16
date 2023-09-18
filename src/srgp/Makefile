@@ -42,3 +42,8 @@ libsrgp.a: $(OBJECTS)
 $(OBJECTS): srgplocal.h srgp_sphigs.h srgppublic.h srgp_errtypes.h macros.h
 geom.o: geom.h
 srgp_pattern.o: default_patterns.h
+
+clean:
+	/bin/rm -f *.o
+	/bin/rm -f *.a
+

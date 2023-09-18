@@ -88,6 +88,7 @@ $(TARGET):  $(PATH_OBJECTS)
 remove:
 	/bin/rm -f $(PATH_OBJECTS)
 	/bin/rm -f *~
+	/bin/rm -f *.a
 
 clean:  remove
 
