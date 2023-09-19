@@ -169,7 +169,7 @@ void SRGP_loadColorTable
     unsigned short *greeni,
     unsigned short *bluei)
 {
-   register int i;
+   register int i, j;
    int endi;
 
    /* LEAVE IMMEDIATELY IF EXECUTING ON BILEVEL DISPLAY */
@@ -188,11 +188,11 @@ void SRGP_loadColorTable
    }
 
    /* COPY INTENSITY VALUES INTO ARRAY. */
-   for (i=0; i<endi; i++)
+   for (i=0, j = startentry; i < count; i++, j++)
    {
-      fakeColormap[i].red = redi[i];
-      fakeColormap[i].green = greeni[i];
-      fakeColormap[i].blue = bluei[i];
+      fakeColormap[j].red = redi[i];
+      fakeColormap[j].green = greeni[i];
+      fakeColormap[j].blue = bluei[i];
    }
 
 }
@@ -208,7 +208,7 @@ SRGP_inquireColorTable
     unsigned short *bluei)
 {
    static int cursize_of_x_cs_array = 0;  /* number of XColor structs */
-   register int i,j;
+   register int i, j;
    int endi;
 
    /* LEAVE IMMEDIATELY IF EXECUTING ON BILEVEL DISPLAY */
@@ -224,11 +224,11 @@ SRGP_inquireColorTable
    }
 
    /* COPY INTENSITY VALUES INTO USER'S ARRAY. */
-   for (j=0; j<count; j++)
+   for (i = 0, j = startentry; i < count; i++, j++)
    {
-      redi[j] = fakeColormap[j].red;
-      greeni[j] = fakeColormap[j].green;
-      bluei[j] =fakeColormap[j].blue;
+      redi[i] = fakeColormap[j].red;
+      greeni[i] = fakeColormap[j].green;
+      bluei[i] = fakeColormap[j].blue;
    }
 }
 
