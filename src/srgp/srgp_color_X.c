@@ -5,10 +5,10 @@
 /** THIS FILE IS FOR X11 IMPLEMENTATION ONLY
 **/
 
-// The color pallette needs to be global.
+/* The color pallette needs to be global. */
 uint16_t colorPallette[65536];
 
-// This is the fake colormap since I'm using 16-bit truecolor.
+/* This is the fake colormap since I'm using 16-bit truecolor. */
 static struct
 {
   uint16_t red;
@@ -48,30 +48,30 @@ static uint16_t convertRgbTo16Bit(uint16_t red,uint16_t green,uint16_t blue)
   uint16_t value;
   uint16_t r, g, b;
 
-  // Map to [0,255].
+  /* Map to [0,255]. */
   red /= 256;
   green /= 256;
   blue /= 256;
 
-  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  /* /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ */
   // Form the quantized values.
-  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  /* /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ */
   // Quantize to 5 bits.
   r = red / 8;
 
-  // Quantize to 6 bits.
+  /* Quantize to 6 bits. */
   g = green / 4;
 
-  // Quantize to 5 bits.
+  /* Quantize to 5 bits. */
   b = blue / 8;
-  //_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  /* /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ */
 
-  // Construct the 16-bit value.
+  /* Construct the 16-bit value. */
   value = (r << 11) | (g << 5) | b;
   
   return (value);
 
-} // convertRgbTo16Bit
+} /* convertRgbTo16Bit */
 
 /*****************************************************************************
 
@@ -99,21 +99,21 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
   XColor exact;
   XColor closest;
 
-  // Retrieve the color attributes by name.
+  /* Retrieve the color attributes by name. */
   XLookupColor(srgpx__display,srgpx__colormap,colorName,&exact,&closest);
 
-  // Store values in our "color table".
+  /* Store values in our "color table". */
   fakeColormap[palletteIndex].red = exact.red;
   fakeColormap[palletteIndex].green = exact.green;
   fakeColormap[palletteIndex].blue = exact.blue;
 
-  // Store 16-bit mapping in the pallette.
+  /* Store 16-bit mapping in the pallette. */
   colorPallette[palletteIndex] =
     convertRgbTo16Bit(exact.red,exact.green,exact.blue);
 
   return;
 
-} // srgp_storeColor
+} /* srgp_storeColor */
 
 //******************************************************************
 //******************************************************************
@@ -156,9 +156,11 @@ SRGP__initColor (requested_planes)
 
    /*** DONE FOR ALL CONFIGURATIONS. */
    XSetWindowBackground (srgpx__display, 
-			 srgp__curActiveCanvasSpec.drawable.win, XWHITE);
+			 srgp__curActiveCanvasSpec.drawable.win,
+                         XWHITE);
    XSetWindowBorder (srgpx__display, 
-		     srgp__curActiveCanvasSpec.drawable.win, XBLACK);
+		     srgp__curActiveCanvasSpec.drawable.win,
+                     XBLACK);
 }
 
 
@@ -188,7 +190,7 @@ void SRGP_loadColorTable
    }
 
    /* COPY INTENSITY VALUES INTO ARRAY. */
-   for (i=0, j = startentry; i < count; i++, j++)
+   for (i = 0, j = startentry; i < count; i++, j++)
    {
       fakeColormap[j].red = redi[i];
       fakeColormap[j].green = greeni[i];
@@ -207,7 +209,6 @@ SRGP_inquireColorTable
     unsigned short *greeni,
     unsigned short *bluei)
 {
-   static int cursize_of_x_cs_array = 0;  /* number of XColor structs */
    register int i, j;
    int endi;
 
@@ -247,7 +248,7 @@ char *name;   /* Null-terminated string of characters */
       srgp_check_pixel_value (entry, "start/end");
    }
 
-   // Store the color in our fake colormap.
+   /* Store the color in our fake colormap. */
    srgp_storeColor(name,COLORINDEX(entry));
 
 }
