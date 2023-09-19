@@ -311,6 +311,9 @@ SRGP__updateKeyboardEcho ()
 void
 SRGP__updateKeyboardEchoAttributes ()
 {
+   uint16_t color;
+   int pixel;
+
    if (keyboard_echo_is_active) {
       EraseText();
    }
@@ -318,10 +321,14 @@ SRGP__updateKeyboardEchoAttributes ()
    echo__keyboard_left = srgp__cur_keyboard_echo_origin.x;
    echo__keyboard_origin = SCREENFIXED(srgp__cur_keyboard_echo_origin.y);
 
-   XSetForeground (srgpx__display, echo__keyboard_gc, 
-     colorPallette[XCOLOR(COLORINDEX(srgp__cur_keyboard_echo_color))]);
-   XSetBackground (srgpx__display, echo__keyboard_gc, 
-     colorPallette[XCOLOR(COLORINDEX(SRGP_WHITE))]);
+   pixel = XCOLOR(COLORINDEX(srgp__cur_keyboard_echo_color));
+   color = srgp_retrieveColorFromPallette(pixel);
+
+   XSetForeground (srgpx__display, echo__keyboard_gc,color);
+
+   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(SRGP_WHITE)));
+
+   XSetBackground (srgpx__display, echo__keyboard_gc,color); 
 
    XSetFont (srgpx__display, echo__keyboard_gc, 
 	     (echo__keyboard_font =

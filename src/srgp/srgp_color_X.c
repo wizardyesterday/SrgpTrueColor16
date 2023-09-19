@@ -6,7 +6,7 @@
 **/
 
 /* The color pallette needs to be global. */
-uint16_t colorPallette[65536];
+static uint16_t colorPallette[65536];
 
 /* This is the fake colormap since I'm using 16-bit truecolor. */
 static struct
@@ -115,6 +115,41 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
 
 } /* srgp_storeColor */
 
+/*****************************************************************************
+
+  Name: srgp_retrieveColorFromPallette
+
+  Purpose: The purpose of this function is to store the 16-bit
+  representation of a color into the color pallette.
+
+  Calling Sequence: value = srgp_retrieveColorFromPallette(colorIndex)
+
+  Inputs:
+
+    colorIndex - The index, into the pallette, for which to retrieve the
+    16-bit representation of the color.
+
+  Outputs:
+
+    value = The 16-bit representation of the rgb value.
+
+*****************************************************************************/
+uint16_t srgp_retrieveColorFromPallette(int colorIndex)
+{
+  uint16_t value;
+
+  /* Default to black. */
+  value = 0;
+
+  if ((colorIndex >= 0) && (colorIndex <= 65535))
+  {
+    /* We have a valid index. */
+    value = colorPallette[colorIndex];
+  } /* if */
+
+  return (value);
+
+} /* srgp_retrieveColorFromPallette */
 //******************************************************************
 //******************************************************************
 void 
@@ -192,9 +227,13 @@ void SRGP_loadColorTable
    /* COPY INTENSITY VALUES INTO ARRAY. */
    for (i = 0, j = startentry; i < count; i++, j++)
    {
+      /* Update the colormap. */
       fakeColormap[j].red = redi[i];
       fakeColormap[j].green = greeni[i];
       fakeColormap[j].blue = bluei[i];
+
+      /* Update the pallette. */
+      colorPallette[j] = convertRgbTo16Bit(redi[i],greeni[i],bluei[i]);
    }
 
 }

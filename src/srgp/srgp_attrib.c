@@ -553,6 +553,8 @@ SRGP_setPlaneMask (int value)
 void
 SRGP_setColor (int value)
 {
+   uint16_t color;
+
    if (value == __CURATT(color)) return;
 
    DEBUG_AIDS{
@@ -567,10 +569,10 @@ SRGP_setColor (int value)
    srgp__curActiveCanvasSpec.attributes.color = value;
 
 #ifdef X11
-   XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,
-		  colorPallette[XCOLOR(COLORINDEX(value))]);
-   XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,
-		  colorPallette[XCOLOR(COLORINDEX(value))]);
+   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
+
+   XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,color);
+   XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,color);
 #endif
 
 #ifdef THINK_C
@@ -589,6 +591,8 @@ SRGP_setColor (int value)
 void
 SRGP_setBackgroundColor (int value)
 {
+   uint16_t color;
+
    if (value == __CURATT(background_color)) return;
 
    DEBUG_AIDS{
@@ -603,10 +607,10 @@ SRGP_setBackgroundColor (int value)
    srgp__curActiveCanvasSpec.attributes.background_color = value;
 
 #ifdef X11
-   XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,
-		  colorPallette[XCOLOR(COLORINDEX(value))]);
-   XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,
-		  colorPallette[XCOLOR(COLORINDEX(value))]);
+   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
+
+   XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,color);
+   XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,color);
 #endif
 
 #ifdef THINK_C

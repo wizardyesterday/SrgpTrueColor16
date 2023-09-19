@@ -210,6 +210,7 @@ void	    SRGP_deleteCanvas (canvasID);
 void   	    SRGP_loadCommonColor (int entry, char *name);
 void        SRGP_loadColorTable (int start, int cnt, ush *r, ush *g, ush *b);
 void        SRGP_loadSingleColor (int start, ush r, ush g, ush b);
+uint16_t    srgp_retrieveColorFromPallette(int colorIndex);
 
 /******************** cursor.c, font.c, pattern.c */
 void	    SRGP_loadCursor (int index, int CURSOR_SHAPE);
@@ -304,7 +305,6 @@ void 	    SRGP_registerResizeCallback (funcptr);
 void 	    SRGP_changeScreenCanvasSize (int newwidth, int newheight);
 void	    SRGP_end (void);
 
-extern uint16_t colorPallette[];
 #undef ush
 #undef rect
 #undef pt
