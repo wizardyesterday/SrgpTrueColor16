@@ -284,6 +284,7 @@ void SRGP__initColor (int requested_planes);
 void SRGP__cleanupColor (void);
 void SRGP__activateApplColorTable (void);
 void SRGP__deactivateApplColorTable (void);
+uint16_t SRGP__retrieveColorFromPallette(int colorIndex);
 
 
 

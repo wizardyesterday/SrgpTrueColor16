@@ -569,7 +569,7 @@ SRGP_setColor (int value)
    srgp__curActiveCanvasSpec.attributes.color = value;
 
 #ifdef X11
-   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
+   color = SRGP__retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
 
    XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,color);
    XSetForeground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,color);
@@ -607,7 +607,7 @@ SRGP_setBackgroundColor (int value)
    srgp__curActiveCanvasSpec.attributes.background_color = value;
 
 #ifdef X11
-   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
+   color = SRGP__retrieveColorFromPallette(XCOLOR(COLORINDEX(value)));
 
    XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_fill,color);
    XSetBackground(srgpx__display, srgp__curActiveCanvasSpec.gc_frame,color);

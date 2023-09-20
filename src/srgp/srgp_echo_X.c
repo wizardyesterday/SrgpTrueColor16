@@ -322,11 +322,11 @@ SRGP__updateKeyboardEchoAttributes ()
    echo__keyboard_origin = SCREENFIXED(srgp__cur_keyboard_echo_origin.y);
 
    pixel = XCOLOR(COLORINDEX(srgp__cur_keyboard_echo_color));
-   color = srgp_retrieveColorFromPallette(pixel);
+   color = SRGP__retrieveColorFromPallette(pixel);
 
    XSetForeground (srgpx__display, echo__keyboard_gc,color);
 
-   color = srgp_retrieveColorFromPallette(XCOLOR(COLORINDEX(SRGP_WHITE)));
+   color = SRGP__retrieveColorFromPallette(XCOLOR(COLORINDEX(SRGP_WHITE)));
 
    XSetBackground (srgpx__display, echo__keyboard_gc,color); 
 

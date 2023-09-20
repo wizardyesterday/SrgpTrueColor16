@@ -117,12 +117,12 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
 
 /*****************************************************************************
 
-  Name: srgp_retrieveColorFromPallette
+  Name: SRGP__retrieveColorFromPallette
 
   Purpose: The purpose of this function is to store the 16-bit
   representation of a color into the color pallette.
 
-  Calling Sequence: value = srgp_retrieveColorFromPallette(colorIndex)
+  Calling Sequence: value = SRGP__retrieveColorFromPallette(colorIndex)
 
   Inputs:
 
@@ -134,7 +134,7 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
     value = The 16-bit representation of the rgb value.
 
 *****************************************************************************/
-uint16_t srgp_retrieveColorFromPallette(int colorIndex)
+uint16_t SRGP__retrieveColorFromPallette(int colorIndex)
 {
   uint16_t value;
 
@@ -149,7 +149,8 @@ uint16_t srgp_retrieveColorFromPallette(int colorIndex)
 
   return (value);
 
-} /* srgp_retrieveColorFromPallette */
+} /* SRGP__retrieveColorFromPallette */
+
 //******************************************************************
 //******************************************************************
 void 
