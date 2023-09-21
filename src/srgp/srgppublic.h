@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdint.h>
 
 
 #ifdef SRGP_BOSS

@@ -1,19 +1,18 @@
 #include "HEADERS.h"
-#include <stdint.h>
 #include "srgplocal.h"
 
 /** THIS FILE IS FOR X11 IMPLEMENTATION ONLY
 **/
 
 /* The color pallette needs to be global. */
-static uint16_t colorPallette[65536];
+static unsigned short colorPallette[65536];
 
 /* This is the fake colormap since I'm using 16-bit truecolor. */
 static struct
 {
-  uint16_t red;
-  uint16_t green;
-  uint16_t blue;
+  unsigned short red;
+  unsigned short green;
+  unsigned short blue;
 } fakeColormap[65536];
 
 /*****************************************************************************
@@ -43,10 +42,10 @@ static struct
     value = The 16-bit representation of the rgb value.
 
 *****************************************************************************/
-static uint16_t convertRgbTo16Bit(uint16_t red,uint16_t green,uint16_t blue)
+static unsigned short convertRgbTo16Bit(unsigned short red,unsigned short green,unsigned short blue)
 {
-  uint16_t value;
-  uint16_t r, g, b;
+  unsigned short value;
+  unsigned short r, g, b;
 
   /* Map to [0,255]. */
   red /= 256;
@@ -134,9 +133,9 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
     value = The 16-bit representation of the rgb value.
 
 *****************************************************************************/
-uint16_t SRGP__retrieveColorFromPallette(int colorIndex)
+unsigned short SRGP__retrieveColorFromPallette(int colorIndex)
 {
-  uint16_t value;
+  unsigned short value;
 
   /* Default to black. */
   value = 0;

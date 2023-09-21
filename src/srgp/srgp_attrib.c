@@ -553,7 +553,7 @@ SRGP_setPlaneMask (int value)
 void
 SRGP_setColor (int value)
 {
-   uint16_t color;
+   unsigned short color;
 
    if (value == __CURATT(color)) return;
 
@@ -591,7 +591,7 @@ SRGP_setColor (int value)
 void
 SRGP_setBackgroundColor (int value)
 {
-   uint16_t color;
+   unsigned short color;
 
    if (value == __CURATT(background_color)) return;
 

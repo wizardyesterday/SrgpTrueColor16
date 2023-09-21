@@ -311,7 +311,7 @@ SRGP__updateKeyboardEcho ()
 void
 SRGP__updateKeyboardEchoAttributes ()
 {
-   uint16_t color;
+   unsigned short color;
    int pixel;
 
    if (keyboard_echo_is_active) {
