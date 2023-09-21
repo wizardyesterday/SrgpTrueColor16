@@ -5,7 +5,7 @@
 **/
 
 /* The color pallette needs to be global. */
-static unsigned short colorPallette[65536];
+static unsigned long colorPallette[65536];
 
 /* This is the fake colormap since I'm using 16-bit truecolor. */
 static struct
@@ -27,7 +27,7 @@ static struct
 
   r[4:0], g[5:0], blue[4:0] = rrrrr gggggg bbbbb = 16 bits
 
-  Calling Sequence: value = convertRgbTo16Bit(red,green,blue)
+  Calling Sequence: pixel = convertRgbTo16Bit(red,green,blue)
 
   Inputs:
 
@@ -39,12 +39,15 @@ static struct
 
   Outputs:
 
-    value = The 16-bit representation of the rgb value.
+    pixel = The 16-bit pixel representation of the rgb value.
 
 *****************************************************************************/
-static unsigned short convertRgbTo16Bit(unsigned short red,unsigned short green,unsigned short blue)
+static unsigned long convertRgbTo16Bit(
+  unsigned short red,
+  unsigned short green,
+  unsigned short blue)
 {
-  unsigned short value;
+  unsigned short pixel;
   unsigned short r, g, b;
 
   /* Map to [0,255]. */
@@ -66,9 +69,9 @@ static unsigned short convertRgbTo16Bit(unsigned short red,unsigned short green,
   /* /_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/ */
 
   /* Construct the 16-bit value. */
-  value = (r << 11) | (g << 5) | b;
+  pixel = (r << 11) | (g << 5) | b;
   
-  return (value);
+  return (pixel);
 
 } /* convertRgbTo16Bit */
 
@@ -133,9 +136,9 @@ static void srgp_storeColor(char *colorName,int palletteIndex)
     value = The 16-bit representation of the rgb value.
 
 *****************************************************************************/
-unsigned short SRGP__retrieveColorFromPallette(int colorIndex)
+unsigned long SRGP__retrieveColorFromPallette(int colorIndex)
 {
-  unsigned short value;
+  unsigned long value;
 
   /* Default to black. */
   value = 0;

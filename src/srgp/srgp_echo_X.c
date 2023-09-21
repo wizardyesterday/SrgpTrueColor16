@@ -311,7 +311,7 @@ SRGP__updateKeyboardEcho ()
 void
 SRGP__updateKeyboardEchoAttributes ()
 {
-   unsigned short color;
+   unsigned long color;
    int pixel;
 
    if (keyboard_echo_is_active) {
@@ -324,11 +324,11 @@ SRGP__updateKeyboardEchoAttributes ()
    pixel = XCOLOR(COLORINDEX(srgp__cur_keyboard_echo_color));
    color = SRGP__retrieveColorFromPallette(pixel);
 
-   XSetForeground (srgpx__display, echo__keyboard_gc,color);
+   XSetForeground(srgpx__display, echo__keyboard_gc,color);
 
    color = SRGP__retrieveColorFromPallette(XCOLOR(COLORINDEX(SRGP_WHITE)));
 
-   XSetBackground (srgpx__display, echo__keyboard_gc,color); 
+   XSetBackground(srgpx__display, echo__keyboard_gc,color); 
 
    XSetFont (srgpx__display, echo__keyboard_gc, 
 	     (echo__keyboard_font =
